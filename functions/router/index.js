@@ -14,7 +14,9 @@ router.get('/users', userController.getAll);
 router.get('/users/:id', userController.getById);
 router.post('/users/create', userController.create);
 router.patch('/users/:id/edit', userController.update);
-router.delete('/users/:id/delete', userController.remove);
+router.patch('/users/:id/reStore', userController.reStore);
+router.delete('/users/:id/remove', userController.remove);
+router.delete('/users/:id/softRemove', userController.softRemove);
 
 
 module.exports = router;

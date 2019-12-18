@@ -1,23 +1,71 @@
+const firebaseSDK = require('../services/firebaseSDK');
+const DB_TYPE = require('../constant/DB_TYPE');
+
+
+const SELECT_DB_TYPE = DB_TYPE.REALTIME_FIREBASE;
 
 const getAll = async () => {
-    return 'Get All From Data Sourece';
+    if (DB_TYPE.REALTIME_FIREBASE === SELECT_DB_TYPE) {
+        const { users } = firebaseSDK.firebaseDatabase;
+        const response = await users.getAll();
+        return response;
+    }
+
+    
 }
 
-const getById = async () => {
-    return 'Get By ID From Data Sourece';
+const getById = async (id) => {
+    if (DB_TYPE.REALTIME_FIREBASE === SELECT_DB_TYPE) {
+        const { users } = firebaseSDK.firebaseDatabase;
+        const response = await users.getById(id);
+        return response;
+    }
+    
 }
 
 
-const create = async () => {
-    return 'Create From Data Sourece';
+const create = async (data) => {
+    if (DB_TYPE.REALTIME_FIREBASE === SELECT_DB_TYPE) {
+        const { users } = firebaseSDK.firebaseDatabase;
+        const response = await users.create(data);
+        return response;
+    }
+    
 }
 
-const update = async () => {
-    return 'update From From Data Sourece';
+const update = async (id, data) => {
+    if (DB_TYPE.REALTIME_FIREBASE === SELECT_DB_TYPE) {
+        const { users } = firebaseSDK.firebaseDatabase;
+        const response = await users.update(id, data);
+        return response;
+    }
+    
 }
 
-const remove = async () => {
-    return 'Remove All From Data Sourece';
+const softRemove  = async (id) => {
+    if (DB_TYPE.REALTIME_FIREBASE === SELECT_DB_TYPE) {
+        const { users } = firebaseSDK.firebaseDatabase;
+        const response = await users.softRemove(id);
+        return response;
+    }
+    
+}
+
+const reStore  = async (id) => {
+    if (DB_TYPE.REALTIME_FIREBASE === SELECT_DB_TYPE) {
+        const { users } = firebaseSDK.firebaseDatabase;
+        const response = await users.reStore(id);
+        return response;
+    }
+   
+}
+
+const remove = async (id) => {
+    if (DB_TYPE.REALTIME_FIREBASE === SELECT_DB_TYPE) {
+        const { users } = firebaseSDK.firebaseDatabase;
+        const response = await users.remove(id);
+        return response;
+    }
 }
 
 
@@ -26,7 +74,9 @@ const userRepository = {
     getById,
     create,
     update,
-    remove
+    remove,
+    softRemove,
+    reStore
 }
 
 module.exports = userRepository;
